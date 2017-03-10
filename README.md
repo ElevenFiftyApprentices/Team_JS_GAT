@@ -2,6 +2,6 @@
 Authored by <strong>TamGAT</strong>.<br/>
 Built upon MEANjs.
 <hr>
-Run: 
+Terminal run:<br/>
 npm install<br/>
 gulp
