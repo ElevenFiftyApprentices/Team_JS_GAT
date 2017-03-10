@@ -3,5 +3,5 @@ Authored by <strong>TamGAT</strong>.<br/>
 Built upon MEANjs.
 <hr>
 Terminal run:<br/>
-npm install<br/>
-gulp
+&nbsp; npm install<br/>
+&nbsp; gulp
