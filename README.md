@@ -1,5 +1,5 @@
 <h1>A <em>beautifully elegant</em> shopping list application for all people!</h1>
-Authored by <strong>TamGAT</strong>.<br/>
+Authored by <strong>TeamGAT</strong>.<br/>
 Built upon MEANjs.
 <hr>
 Terminal run:<br/>
