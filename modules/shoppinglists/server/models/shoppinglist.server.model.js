@@ -10,10 +10,33 @@ var mongoose = require('mongoose'),
  * Shoppinglist Schema
  */
 var ShoppinglistSchema = new Schema({
+  title: {
+    type: String,
+    default: '',
+    required: 'Please provide a title for your shopping list',
+    trim: true
+  },
+  color: {
+    type: String,
+    // default: '#' + newList.color
+    default: '',
+    trim: true
+  },
   name: {
     type: String,
     default: '',
-    required: 'Please fill Shoppinglist name',
+    required: 'Please provide an item name',
+    trim: true
+  },
+  priority: {
+    type: String,
+    default: '',
+    required: 'Please select the priority for this item',
+    trim: true
+  },
+  notes: {
+    type: String,
+    default: '',
     trim: true
   },
   created: {
