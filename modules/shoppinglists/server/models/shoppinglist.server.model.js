@@ -10,7 +10,7 @@ var mongoose = require('mongoose'),
  * Shoppinglist Schema
  */
 var ShoppinglistSchema = new Schema({
-  list_title: {
+  title: {
     type: String,
     default: '',
     required: 'Please provide a title for your shopping list',
@@ -18,11 +18,11 @@ var ShoppinglistSchema = new Schema({
   },
   color: {
     type: String,
-    // default: '#' + newList.color
+    default: '#' + newList.color
     default: '',
     trim: true
   },
-  list_item_name: {
+  name: {
     type: String,
     default: '',
     required: 'Please provide an item name',
