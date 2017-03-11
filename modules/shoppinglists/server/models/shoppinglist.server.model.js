@@ -18,7 +18,7 @@ var ShoppinglistSchema = new Schema({
   },
   color: {
     type: String,
-    default: '#' + newList.color
+    // default: '#' + newList.color
     default: '',
     trim: true
   },
