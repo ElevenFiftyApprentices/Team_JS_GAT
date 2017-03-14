@@ -18,20 +18,20 @@ var ShoppinglistSchema = new Schema({
   },
   color: {
     type: String,
-    // default: '#' + vm.shoppinglist.color
+    // default: '#' + '',
     default: '',
     trim: true
   },
   name: {
     type: String,
     default: '',
-    required: 'Please provide an item name',
+    // required: 'Please provide an item name',
     trim: true
   },
   priority: {
     type: String,
-    default: '',
-    required: 'Please select the priority for this item',
+    default: 'Low',
+    // required: 'Please select the priority for this item',
     trim: true
   },
   notes: {
@@ -46,7 +46,16 @@ var ShoppinglistSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
-  }
+  },
+  item: {
+    type: String,
+    default: ''
+  },
+  items: {
+    type: [],
+    default: [],
+    required: 'Please enter shopping items' 
+  }  
 });
 
 mongoose.model('Shoppinglist', ShoppinglistSchema);
