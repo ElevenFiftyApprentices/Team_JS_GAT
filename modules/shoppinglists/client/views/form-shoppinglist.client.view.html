@@ -3,72 +3,106 @@
     <h1>{{vm.shoppinglist._id ? 'Edit Shoppinglist' : 'New Shoppinglist'}}</h1>
   </div>
   <div class="col-md-12">
-    <form name="vm.form.shoppinglistForm" class="form-horizontal" ng-submit="vm.save(vm.form.shoppinglistForm.$valid)" novalidate>
-      <fieldset>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="name"> List Name</label>
-          <input name="name" type="text" ng-model="vm.shoppinglist.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.shoppinglistForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Shopping List name is required.</p>
+
+    <div class="col-md-6">
+      <form name="vm.form.shoppinglistForm" ng-submit="vm.save(vm.form.shoppinglistForm.$valid)" ng-style="{color: vm.shoppinglist.color}" novalidate>
+        <fieldset>
+
+          <!-- TITLE -->
+          <div class="form-group" show-errors>
+            <label class="control-label" for="title">Title</label>
+            <input name="title" type="text" ng-model="vm.shoppinglist.title" id="title" class="form-control" placeholder="Enter name for this list" ng-style="{color: vm.shoppinglist.color}" required>
+            <div ng-messages="vm.form.shoppinglistForm.title.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Shoppinglist title is required.</p>
+            </div>
           </div>
-        </div>
 
+          <!-- COLOR -->
+          <div class="form-inline">
+            <div class="form-group">
+              <label class="control-label" for="color">List Color</label>
+              <input type="color" name="color" ng-model="vm.shoppinglist.color">
+            </div>
+            <!-- <div class="form-group">
+              <label class="radio-inline red">
+                <input type="radio" name="color" value="#E42217" ng-model="vm.shoppinglist.color"> Red
+              </label>
 
-        <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.shoppinglist._id ? 'Update' : 'Create'}}</button>
-        </div>
-        <div ng-show="vm.error" class="text-danger">
-          <strong ng-bind="vm.error"></strong>
-        </div>
-      </fieldset>
-    </form>
-  </div>
-</section>
+              <label class="radio-inline gold">
+                <input type="radio" name="color" value="#FBB117" ng-model="vm.shoppinglist.color"> Yellow-Gold
+              </label>
 
-<section class="listSection">
-  <div class="col-md-6">
-    <form name="vm.form.shoppinglistForm" class="form-horizontal" ng-submit="vm.addItem(vm.form.items.$valid)" novalidate>
-      <fieldset>
-        <div class="form-group">
-          <label class="control-label" for="listitem">Item</label>
-            <input name="item" type="text" ng-model="vm.shoppinglist.item" id="item" class="form-control" placeholder="Enter Item" required>
-        </div>
-        <div class="form-group"> 
-          <button type="submit" class="btn btn-default">Add Item</button>
-        </div>  
-      </fieldset>  
-    </form>    
-  </div>
-  
-  <div class="col-md-6">
-    <h3>{{list.name}}</h3>
-      <div class="panel panel-default">
-        <div class="panel-body">
+              <label class="radio-inline green">
+                <input type="radio" name="color" value="#008000" ng-model="vm.shoppinglist.color"> Green
+              </label>
 
-          <ul class="list-group">
-            <li class="list-group-item" ng-repeat="item in list.items | orderBy:list.name">
-              <input type="checkbox" ng-model="item.isChecked" ng-click="editItem()">
-                {{item.name}}
-            </li> s
+              <label class="radio-inline plum">
+                <input type="radio" name="color" value="#7D0541" ng-model="vm.shoppinglist.color"> Plum
+              </label>
+          
+              <label class="radio-inline blue">
+                <input type="radio" name="color" value="#2554C7" ng-model="vm.shoppinglist.color"> Blue
+              </label>  
+            </div>
+            <br/> -->
+            <div class="form-group">
+              <!-- HEX CODE INPUT -->
+              <input type="text" minlength="6" maxlength="6" pattern="[A-Fa-f0-9]{6}" class="" placeholder="Hex Value (ex: 0033cc)" ng-model="vm.shoppinglist.color">
+            </div> 
+            <div class="clear-fix">&nbsp;</div>                
+          </div> 
+
+          <div class="clear-fix">&nbsp;</div>
+          <ul>
+            <li ng-repeat="item in vm.myList | orderBy: order" ng-style="{color: vm.shoppinglist.color}">          
+              Name: {{item.name}} &nbsp;|&nbsp;
+              Priority: {{item.priority}} &nbsp;|&nbsp;
+              Note: {{item.notes}} &nbsp;&nbsp;
+              <button class="btn btn-default btn-xs" id="remove" ng-click="removeItem(item)" aria-label="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            </li>
           </ul>
+          <div class="clear-fix">&nbsp;</div>
 
-            <button class="btn btn-default btn-custom" href ng-click="showAddItem = !showAddItem" ng-show="!showAddItem">Add Item</button>
-        </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">{{vm.shoppinglist._id ? 'Update' : 'Create'}}</button>
+          </div>
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+
+        </fieldset>
+      </form>
+
+
+
+    </div>
+
+    <div class="col-md-6">
+      <!-- ADD ITEM -->
+      <div class="form-group">
+        <!-- <button class="btn btn-default" href ng-click="showAddItem = !showAddItem" ng-show="!showAddItem">Add Item</button> -->
+
+        <!-- <div ng-show="showAddItem" class="add-item"> -->
+          <h4>Add Item</h4>
+          <fieldset>
+          <!-- {{vm.myList}} -->
+            <form ng-submit="vm.addItem()">
+              <input class="form-control" type="text" name="name" id="name" ng-model="vm.name" ng-style="{color: vm.shoppinglist.color}" placeholder="Item" maxlength="25">
+              <select class="form-control" name="priority" id="priority" ng-model="vm.priority">
+                  <option value="">Priority</option>
+                  <option value="High">High</option>
+                  <option value="Low">Low</option>
+              </select>
+              <input type="text" class="form-control" name="note" id="note" ng-model="vm.notes" ng-style="{color: vm.shoppinglist.color}" placeholder="Note" maxlength="255" value= " ">
+
+              <button class="btn btn-default btn-sm" ng-click="vm.addItem">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-link" value="reset">clear</button> 
+            </form>
+          </fieldset>
+        <!-- </div> -->
       </div>
+    </div>
+
   </div>
 
-  <div class="col-md-6">
-    <h4>Add Item</h4>
-    <form ng-submit="addItem()">
-        <input class="form-control" type="text" name="name" id="name" ng-model="vm.shoppinglist.name" placeholder="Item" maxlength="25" required>
-        <select class="form-control" name="priority" id="priority" ng-model="vm.shoppinglist.priority" required>
-            <option value="">Priority</option>
-            <option value="High">High</option>
-            <option value="Low">Low</option>
-        </select>
-        <input type="text" class="form-control" name="note" id="note" ng-model="vm.shoppinglist.note" placeholder="Note" maxlength="255" value= " ">
-        <button class="btn btn-default btn-add" type="submit">Add</button>&nbsp;<span class="close-box" ng-click="showAddItem = !showAddItem"><u>close</u></span>    
-    </form>
-  </div>
+
 </section>
-

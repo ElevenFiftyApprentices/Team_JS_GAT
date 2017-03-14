@@ -34,7 +34,7 @@ exports.invokeRolesPolicies = function () {
     roles: ['guest'],
     allows: [{
       resources: '/api/shoppinglists',
-      permissions: ['get']
+      permissions: ['get', 'post']
     }, {
       resources: '/api/shoppinglists/:shoppinglistId',
       permissions: ['get']
