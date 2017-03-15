@@ -19,7 +19,7 @@ var ShoppinglistSchema = new Schema({
   color: {
     type: String,
     // default: '#' + vm.shoppinglist.color
-    default: '',
+    default: 'black',
     trim: true
   },
   name: {
@@ -31,7 +31,6 @@ var ShoppinglistSchema = new Schema({
   priority: {
     type: String,
     default: '',
-    required: 'Please select the priority for this item',
     trim: true
   },
   notes: {

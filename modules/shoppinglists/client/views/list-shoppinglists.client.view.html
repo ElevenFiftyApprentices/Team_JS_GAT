@@ -6,6 +6,7 @@
     <a ng-repeat="shoppinglist in vm.shoppinglists"
        ui-sref="shoppinglists.view({ shoppinglistId: shoppinglist._id })"
        class="list-group-item">
+       <h4 class="list-group-item-heading" ng-bind="shoppinglist.title"></h4>
       <small class="list-group-item-text">
         Posted on
         <span ng-bind="shoppinglist.created | date:'mediumDate'"></span>
@@ -13,10 +14,10 @@
         <span ng-if="shoppinglist.user" ng-bind="shoppinglist.user.displayName"></span>
         <span ng-if="!shoppinglist.user">Deleted User</span>
       </small>
-      <h4 class="list-group-item-heading" ng-bind="shoppinglist.name"></h4>
+      
     </a>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.shoppinglists.$resolved && !vm.shoppinglists.length">
-    No Shoppinglists yet, why don't you <a ui-sref="shoppinglists.create">create one</a>?
+    No Shopping Lists yet, why don't you <a ui-sref="shoppinglists.create">create one</a>?
   </div>
 </section>

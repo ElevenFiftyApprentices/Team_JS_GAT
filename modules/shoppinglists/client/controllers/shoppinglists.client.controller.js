@@ -17,7 +17,14 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.itemList = [];
+    vm.addItem = addItem;
 
+    function addItem(isValid){
+      vm.itemList.push(vm.shoppinglist.name);
+      vm.shoppinglist.name = '';
+    }
+    
     // Remove existing Shoppinglist
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {

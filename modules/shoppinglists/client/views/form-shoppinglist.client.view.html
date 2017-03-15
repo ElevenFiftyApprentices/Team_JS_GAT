@@ -2,17 +2,17 @@
   <div class="page-header">
     <h1>{{vm.shoppinglist._id ? 'Edit Shoppinglist' : 'New Shoppinglist'}}</h1>
   </div>
-  <div class="col-md-12">
+
+  <div class="col-md-6">
     <form name="vm.form.shoppinglistForm" class="form-horizontal" ng-submit="vm.save(vm.form.shoppinglistForm.$valid)" novalidate>
       <fieldset>
         <div class="form-group" show-errors>
-          <label class="control-label" for="name"> List Name</label>
-          <input name="name" type="text" ng-model="vm.shoppinglist.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.shoppinglistForm.name.$error" role="alert">
+          <label class="control-label" for="title">List Name</label>
+          <input name="title" type="text" ng-model="vm.shoppinglist.title" id="title" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.shoppinglistForm.title.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Shopping List name is required.</p>
           </div>
         </div>
-
 
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.shoppinglist._id ? 'Update' : 'Create'}}</button>
@@ -25,34 +25,48 @@
   </div>
 </section>
 
+<!-- This section is for adding a list into the form.  It is working as of 3-15-17 -->
+
 <section class="listSection">
+  <div class="row">
   <div class="col-md-6">
-    <form name="vm.form.shoppinglistForm" class="form-horizontal" ng-submit="vm.addItem(vm.form.items.$valid)" novalidate>
+    <form name="vm.form.shoppinglistForm" class="form-horizontal" ng-submit="vm.addItem(vm.form.listitem.$valid)" novalidate>
       <fieldset>
-        <div class="form-group">
-          <label class="control-label" for="listitem">Item</label>
-            <input name="item" type="text" ng-model="vm.shoppinglist.item" id="item" class="form-control" placeholder="Enter Item" required>
-        </div>
+          <label class="control-label" for="listItem">Item</label>
+            <input name="item" type="text" ng-model="vm.shoppinglist.name" id="name" class="form-control" placeholder="Enter Item" required>
+
         <div class="form-group"> 
-          <button type="submit" class="btn btn-default">Add Item</button>
+          <button type="click" class="btn btn-default">Add Item</button>
         </div>  
+
       </fieldset>  
-    </form>    
+    </form>  
+  </div> 
+
+     <div class="col-md-6">
+        <h3>Items:</h3>
+          <div>
+              <ul>
+                <li ng-repeat="name in vm.itemList">
+                {{name}}
+                </li> 
+              </ul> 
+          </div>
+      </div>
   </div>
-  
-  <div class="col-md-6">
-    <h3>{{list.name}}</h3>
+</section>
+
+
+<!--   <div class="col-md-6">
+    <h3>{{shoppinglist.name}}</h3>
       <div class="panel panel-default">
         <div class="panel-body">
-
+ 
           <ul class="list-group">
-            <li class="list-group-item" ng-repeat="item in list.items | orderBy:list.name">
-              <input type="checkbox" ng-model="item.isChecked" ng-click="editItem()">
-                {{item.name}}
-            </li> s
+            <li class="list-group-item" ng-repeat="name in vm.shoppinglist.name | orderBy:shoppinglist.name">
+              {{vm.shoppinglist.name}}
+            </li> 
           </ul>
-
-            <button class="btn btn-default btn-custom" href ng-click="showAddItem = !showAddItem" ng-show="!showAddItem">Add Item</button>
         </div>
       </div>
   </div>
@@ -61,14 +75,64 @@
     <h4>Add Item</h4>
     <form ng-submit="addItem()">
         <input class="form-control" type="text" name="name" id="name" ng-model="vm.shoppinglist.name" placeholder="Item" maxlength="25" required>
-        <select class="form-control" name="priority" id="priority" ng-model="vm.shoppinglist.priority" required>
+        
+        <select class="form-control" name="priority" id="priority" ng-model="vm.shoppinglist.priority">
             <option value="">Priority</option>
             <option value="High">High</option>
             <option value="Low">Low</option>
         </select>
-        <input type="text" class="form-control" name="note" id="note" ng-model="vm.shoppinglist.note" placeholder="Note" maxlength="255" value= " ">
-        <button class="btn btn-default btn-add" type="submit">Add</button>&nbsp;<span class="close-box" ng-click="showAddItem = !showAddItem"><u>close</u></span>    
+        <input type="text" class="form-control" name="note" id="notes" ng-model="vm.shoppinglist.notes" placeholder="Notes" maxlength="255" value= " ">
+        <button class="btn btn-default btn-add" type="click">Add</button>&nbsp;<span class="close-box" ng-click="addItem()"><u>close</u></span>    
+    </form>
+  </div>
+</section> -->
+
+<!-- <section class="col-md-6">
+  <div class="page-header">
+    <h1>{{vm.shoppinglist._id ? 'Edit Shoppinglist' : 'New Shoppinglist'}}</h1>
+  </div>
+  <div class="col-md-6">
+    <form name="vm.form.shoppinglistForm" class="form-horizontal" ng-submit="vm.save(vm.form.shoppinglistForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">List Name</label>
+          <input name="title" type="text" ng-model="vm.shoppinglist.title" id="title" class="form-control" placeholder="Enter list title" required>
+          <div ng-messages="vm.form.shoppinglistForm.title.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">List title is required.</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.shoppinglist._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
     </form>
   </div>
 </section>
 
+
+<section class="col-md-6">
+  <div class="form-group" show-errors>
+          <label class="control-label" for="name">Items</label>
+          <input ng-model="vm.shoppinglist.name" ng-options="name for name in vm.shoppinglist" class="form-control" id="name" placeholder="enter an item" required=>
+            <ul ng-repeat="name in vm.shoppinglist.name">
+              <li>{{vm.shoppinglist.name}}</li>
+            </ul>
+          <div ng-messages="vm.form.shoppinglistForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Item is required.</p>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label" for="notes">Notes</label>
+          <textarea ng-model="vm.shoppinglist.notes" class="form-control" id="notes"></textarea>
+        </div>
+        <div class="form-group">
+          <button ng-click="vm.addItem()" class="btn btn-default">Add Item</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+</section> -->
