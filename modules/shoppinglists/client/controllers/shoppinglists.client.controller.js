@@ -23,6 +23,7 @@
     function addItem(isValid){
       vm.itemList.push(vm.shoppinglist.name);
       vm.shoppinglist.name = '';
+      vm.shoppinglist.priority = '';
     }
     
     // Remove existing Shoppinglist
