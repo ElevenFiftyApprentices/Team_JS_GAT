@@ -18,7 +18,7 @@
     vm.error = null;
     vm.form = {};
     vm.addItem = addItem;
-    // vm.removeItem = removeItem;
+    vm.removeItem = removeItem;
     // vm.removeAll = removeAll;
     vm.remove = remove;
     vm.save = save;
@@ -43,7 +43,11 @@
     }
 
     //the functionality to delete items off list
-    vm.myList.removeItem = function(item) {
+    // vm.myList.removeItem = function(item) {
+    //   var removeItem = vm.myList.items.indexOf(item);
+    //   vm.myList.items.splice(removeItem, 1);
+    // };
+    function removeItem(item) {
       var removeItem = vm.myList.items.indexOf(item);
       vm.myList.items.splice(removeItem, 1);
     };
@@ -54,10 +58,20 @@
 
     // Save Shoppinglist
     function save(isValid) {
-      vm.shoppinglist.items = vm.myList;
+      // vm.shoppinglist.items = vm.myList;
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.shoppinglistForm');
         return false;
+      }
+
+      if (vm.shoppinglist._id) {
+        //do the update here
+        // vm.shoppinglist.items = vm.shoppinglist.items.concat(vm.myLIst);
+        newListArray = vm.shoppinglist.items.concat(vm.myList);
+        vm.shoppinglist.items = newListArray;
+      } else {
+        //do the new array here
+        vm.shoppinglist.items = vm.myList;
       }
 
       // TODO: move create/update logic to service
