@@ -13,7 +13,7 @@
         <span ng-if="shoppinglist.user" ng-bind="shoppinglist.user.displayName"></span>
         <span ng-if="!shoppinglist.user">Deleted User</span>
       </small>
-      <h4 class="list-group-item-heading" ng-bind="shoppinglist.name"></h4>
+      <h4 class="list-group-item-heading" ng-bind="shoppinglist.title"></h4>
     </a>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.shoppinglists.$resolved && !vm.shoppinglists.length">

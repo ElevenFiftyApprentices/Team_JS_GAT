@@ -58,7 +58,7 @@
               Name: {{item.name}} &nbsp;|&nbsp;
               Priority: {{item.priority}} &nbsp;|&nbsp;
               Note: {{item.notes}} &nbsp;&nbsp;
-              <button class="btn btn-default btn-xs" id="remove" ng-click="removeItem(item)" aria-label="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+              <button class="btn btn-default btn-xs" id="remove" ng-click="vm.removeItem(item)" aria-label="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
             </li>
           </ul>
           <div class="clear-fix">&nbsp;</div>
@@ -79,30 +79,25 @@
 
     <div class="col-md-6">
       <!-- ADD ITEM -->
-      <div class="form-group">
-        <!-- <button class="btn btn-default" href ng-click="showAddItem = !showAddItem" ng-show="!showAddItem">Add Item</button> -->
+      <h4>Add Item</h4>
+      <!-- {{vm.myList}} -->
+      <form>
+        <fieldset>
+          <div class="form-group">
+            <input class="form-control" type="text" name="name" id="name" ng-model="vm.name" ng-style="{color: vm.shoppinglist.color}" placeholder="Item" maxlength="25">
+            <select class="form-control" name="priority" id="priority" ng-model="vm.priority">
+                <option value="">Priority</option>
+                <option value="High">High</option>
+                <option value="Low">Low</option>
+            </select>
+            <input type="text" class="form-control" name="note" id="note" ng-model="vm.notes" ng-style="{color: vm.shoppinglist.color}" placeholder="Note" maxlength="255" value= " ">
 
-        <!-- <div ng-show="showAddItem" class="add-item"> -->
-          <h4>Add Item</h4>
-          <fieldset>
-          <!-- {{vm.myList}} -->
-            <form ng-submit="vm.addItem()">
-              <input class="form-control" type="text" name="name" id="name" ng-model="vm.name" ng-style="{color: vm.shoppinglist.color}" placeholder="Item" maxlength="25">
-              <select class="form-control" name="priority" id="priority" ng-model="vm.priority">
-                  <option value="">Priority</option>
-                  <option value="High">High</option>
-                  <option value="Low">Low</option>
-              </select>
-              <input type="text" class="form-control" name="note" id="note" ng-model="vm.notes" ng-style="{color: vm.shoppinglist.color}" placeholder="Note" maxlength="255" value= " ">
-
-              <button class="btn btn-default btn-sm" ng-click="vm.addItem">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-link" value="reset">clear</button> 
-            </form>
-          </fieldset>
-        <!-- </div> -->
-      </div>
+            <button class="btn btn-default btn-sm" ng-click="vm.addItem()">Add</button>&nbsp;&nbsp;<button type="reset" class="btn btn-link" value="reset">clear</button> 
+          </div>
+        </fieldset>
+      </form>
     </div>
 
   </div>
-
 
 </section>
