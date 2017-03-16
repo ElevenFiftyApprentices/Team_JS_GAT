@@ -19,11 +19,15 @@
     vm.save = save;
     vm.itemList = [];
     vm.addItem = addItem;
+    vm.removeItem = removeItem;
 
     function addItem(isValid){
       vm.itemList.push(vm.shoppinglist.name);
       vm.shoppinglist.name = '';
-      vm.shoppinglist.priority = '';
+    }
+
+    function removeItem(isValid){
+      vm.itemList.pop(vm.shoppinglist.name);
     }
     
     // Remove existing Shoppinglist

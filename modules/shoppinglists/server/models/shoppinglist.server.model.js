@@ -18,8 +18,6 @@ var ShoppinglistSchema = new Schema({
   },
   color: {
     type: String,
-    // default: '#' + vm.shoppinglist.color
-    default: 'black',
     trim: true
   },
   name: {
