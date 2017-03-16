@@ -21,7 +21,7 @@
           <div class="form-inline">
             <div class="form-group">
               <label class="control-label" for="color">List Color</label>
-              <input type="color" name="color" ng-model="vm.shoppinglist.color">
+              <input type="color" value="#736F6E" name="color" ng-model="vm.shoppinglist.color">
             </div>
             <!-- <div class="form-group">
               <label class="radio-inline red">
@@ -47,12 +47,12 @@
             <br/> -->
             <div class="form-group">
               <!-- HEX CODE INPUT -->
-              <input type="text" minlength="6" maxlength="6" pattern="[A-Fa-f0-9]{6}" class="" placeholder="Hex Value (ex: 0033cc)" ng-model="vm.shoppinglist.color">
+              <input type="text" minlength="7" maxlength="7" pattern="[#A-Fa-f0-9]{7}" value="" placeholder="Hex Value (ex: #0033cc)" ng-model="vm.shoppinglist.color">
             </div> 
             <div class="clear-fix">&nbsp;</div>                
           </div> 
 
-          <div class="clear-fix">&nbsp;</div>
+<!--           <div class="clear-fix">&nbsp;</div>
           <ul>
             <li ng-repeat="item in vm.myList | orderBy: order" ng-style="{color: vm.shoppinglist.color}">          
               Name: {{item.name}} &nbsp;|&nbsp;
@@ -60,7 +60,7 @@
               Note: {{item.notes}} &nbsp;&nbsp;
               <button class="btn btn-default btn-xs" id="remove" ng-click="vm.removeItem(item)" aria-label="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
             </li>
-          </ul>
+          </ul> -->
           <div class="clear-fix">&nbsp;</div>
 
           <div class="form-group">
@@ -77,10 +77,9 @@
 
     </div>
 
-    <div class="col-md-6">
+<!--     <div class="col-md-6"> -->
       <!-- ADD ITEM -->
-      <h4>Add Item</h4>
-      <!-- {{vm.myList}} -->
+      <!-- <h4>Add Item</h4>
       <form>
         <fieldset>
           <div class="form-group">
@@ -96,7 +95,7 @@
           </div>
         </fieldset>
       </form>
-    </div>
+    </div> -->
 
   </div>
 

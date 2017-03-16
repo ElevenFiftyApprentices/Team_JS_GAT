@@ -19,15 +19,41 @@
   <div class="clear-fix"></div>
 
   <div class="col-md-6">
-  <br/>
-  <ul>
-    <p ng-repeat="item in vm.shoppinglist.items">Name: {{item.name}}<br/>Priority: {{item.priority}}<br/>Notes: {{item.notes}}
-      <!-- <button class="btn btn-default btn-xs pull-right" id="remove" ng-click="vm.removeItem(item)" aria-label="Remove">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-      </button> -->
-    </p>
-  </ul>
+    <!-- ADD ITEM -->
+    <h4>Add Item</h4>
+    <!-- {{vm.myList}} -->
+    <form name="vm.form.shoppinglistItemsForm" ng-submit="vm.addItem(vm.form.shoppinglistItemsForm.$valid)" ng-style="{color: vm.shoppinglist.color}" novalidate>
+      
+        <div class="form-group">
+          <input class="form-control" type="text" name="name" id="name" ng-model="vm.name" ng-style="{color: vm.shoppinglist.color}" placeholder="Item" maxlength="25">
+          <select class="form-control" name="priority" id="priority" ng-model="vm.priority">
+              <option value="">Priority</option>
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+          </select>
+          <input type="text" class="form-control" name="note" id="note" ng-model="vm.notes" ng-style="{color: vm.shoppinglist.color}" placeholder="Note" maxlength="255" value= " ">
+
+          <button type="submit" class="btn btn-primary">Add</button><!-- &nbsp;&nbsp;<button type="reset" class="btn btn-link" value="reset">clear</button> --> 
+        </div>
+      
+    </form>
   </div>
+
+  <div class="col-md-6">
+    <br/>
+    <ul>
+      <li ng-repeat="item in vm.shoppinglist.items" class="list-inline" ng-style="{color: vm.shoppinglist.color}">
+        <input type="checkbox" ng-model="item.isChecked" />
+        <span ng-class="{'is-done' : item.isChecked}">Name: {{item.name}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span ng-class="{'is-done' : item.isChecked}">Priority: {{item.priority}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span ng-class="{'is-done' : item.isChecked}">Notes: {{item.notes}}</span>
+        <button class="btn btn-default btn-xs" id="remove" ng-click="vm.removeItem(item)" aria-label="Remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+      </li>
+    </ul>
+    <button class="btn btn-default btn-xs" type="button" ng-click="vm.removeCheckedItems()">Remove Checked</button>
+  </div>
+
+  <div class="clear-fix">&nbsp;</div>
 
   <div class="col-md-12">
   <br/>
