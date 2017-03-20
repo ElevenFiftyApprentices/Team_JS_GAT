@@ -1,11 +1,16 @@
 <section>
   <div class="page-header">
-    <h1>Shopping Lists</h1>
+      <h1>Shopping Lists</h1>
   </div>
+  <!-- <div class="col-md-12">
+    <button type="submit" class="btn btn-primary btn-sm" ui-sref="shoppinglist.create">Create a Shopping List</button>
+  </div> -->
+  <button type="button" class="btn btn-default btn-sm" style="margin-top:-20px;margin-left:12px;" ui-sref="shoppinglists.create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Create a New List</button>  
+  <div class="clearfix">&nbsp;</div>
   <div class="list-group">
     <a ng-repeat="shoppinglist in vm.shoppinglists"
-       ui-sref="shoppinglists.view({ shoppinglistId: shoppinglist._id })"
-       class="list-group-item">
+       ui-sref="shoppinglists.view({ shoppinglistId: shoppinglist._id })" ng-style="{color: shoppinglist.color}"
+       class="list-group-item shoppinglist-link col-md-3 col-xs-12" style="border-color:{{shoppinglist.color}}">
       <small class="list-group-item-text">
         Posted on
         <span ng-bind="shoppinglist.created | date:'mediumDate'"></span>
@@ -13,7 +18,7 @@
         <span ng-if="shoppinglist.user" ng-bind="shoppinglist.user.displayName"></span>
         <span ng-if="!shoppinglist.user">Deleted User</span>
       </small>
-      <h4 class="list-group-item-heading" ng-bind="shoppinglist.title"></h4>
+      <h4 class="list-group-item-heading" ng-bind="shoppinglist.title" ng-style="{color: shoppinglist.color}"></h4>
     </a>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.shoppinglists.$resolved && !vm.shoppinglists.length">
