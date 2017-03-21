@@ -1,6 +1,6 @@
 <section>
   <div class="page-header">
-    <h1>{{vm.shoppinglist._id ? 'Edit Shoppinglist' : 'New Shoppinglist'}}</h1>
+    <h1>{{vm.shoppinglist._id ? 'Edit Shoppinglist' : 'New Shopping List'}}</h1>
   </div>
   <div class="panels-wrapper col-md-12">
 
@@ -28,14 +28,16 @@
               
                 <!-- HEX CODE INPUT -->
                 <label class="control-label">&nbsp;&nbsp;or Enter</label>
-                <input type="text" minlength="7" maxlength="7" pattern="[#A-Fa-f0-9]{7}" value="" placeholder="Hex Value" ng-model="vm.shoppinglist.color">&nbsp;<span style="color:#777;">(ex: #0033cc)</span>
+                <input type="text" minlength="7" maxlength="7" pattern="[#A-Fa-f0-9]{7}" value="" placeholder="Hex Value (#736F6E)" ng-model="vm.shoppinglist.color"><!-- &nbsp;<button type="button" class="btn btn-link" href="http://www.color-hex.com/" target="_blank">Lookup a Hex Value&nbsp;<span class="glyphicon glyphicon-link" aria-hidden="true"></span></button> -->
+
+                <span id="helpBlock" class="help-block">Choose a color by either clicking on color picker box or by directly entering in a color hex value (ex: #736F6E) in the field above.</span>
               <div class="clear-fix">&nbsp;</div>                
             </div> 
 
-            <div class="clear-fix">&nbsp;</div>
+            <!-- <div class="clear-fix">&nbsp;</div> -->
 
             <div class="form-group">
-              <button type="submit" class="btn btn-primary">{{vm.shoppinglist._id ? 'Update' : 'Create'}}</button>
+              <button type="submit" class="btn btn-primary">&nbsp;&nbsp;{{vm.shoppinglist._id ? 'Update' : 'Create'}}&nbsp;&nbsp;</button>
             </div>
             <div ng-show="vm.error" class="text-danger">
               <strong ng-bind="vm.error"></strong>
