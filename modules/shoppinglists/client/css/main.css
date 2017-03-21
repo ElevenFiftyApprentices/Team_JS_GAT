@@ -32,7 +32,10 @@ a,
     padding: 10px 15px;
     margin: 0 0 10px;
     background-color: #fff;
-    border: 1px solid #bbb;
+    border-top: 2px solid #bbb;
+    border-right: 1px solid #bbb;
+    border-bottom: 2px solid #bbb;
+    border-left: 1px solid #bbb;
     border-radius: 15px;
 }
 .list-group-item.shoppinglist-link {
@@ -91,6 +94,7 @@ a,
 
 .form-group label.control-label {
   color: #276D8C;
+  font-size: 1.1em;
 }
 input[type="color"] {
   cursor: pointer;
